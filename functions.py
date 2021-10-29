@@ -66,15 +66,41 @@ def Thresholds(imgB):
     return opening
     #cv2.imshow('opening', opening)
     
+    
+
+
+
+
+def BlackMouseColorRange(imgBGR):
+    
+#   (hMin = 24 , sMin = 23, vMin = 0), (hMax = 85 , sMax = 255, vMax = 254)
+    hsv = cv2.cvtColor(imgBGR, cv2.COLOR_BGR2HSV_FULL)
+    # Get current positions of all trackbars
+    hMin = 0
+    sMin = 0
+    vMin = 0
+    hMax = 70
+    sMax = 70
+    vMax = 70
+
+    # Set minimum and maximum HSV values to display
+    lower = np.array([hMin, sMin, vMin])
+    upper = np.array([hMax, sMax, vMax])
+
+
+    masked = cv2.inRange(hsv, lower, upper)
+    result = cv2.bitwise_and(imgBGR, imgBGR, mask=masked)
+    return masked
+
 
 def BlueMouseColorRange(imgBGR):
     
     ## (hMin = 0 , sMin = 40, vMin = 39), (hMax = 179 , sMax = 255, vMax = 255)
     hsv = cv2.cvtColor(imgBGR, cv2.COLOR_BGR2HSV_FULL)
     # Get current positions of all trackbars
-    hMin = 0
-    sMin = 40
-    vMin = 40
+    hMin = 120
+    sMin = 120
+    vMin = 0
     hMax = 179
     sMax = 255
     vMax = 255
@@ -85,4 +111,5 @@ def BlueMouseColorRange(imgBGR):
 
 
     masked = cv2.inRange(hsv, lower, upper)
+    result = cv2.bitwise_and(imgBGR, imgBGR, mask=masked)
     return masked

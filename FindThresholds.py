@@ -7,13 +7,14 @@ def nothing(x):
     pass
 
 
-image = cv2.imread('Raw Data\Separeted Data\Blue Mouse - Normal\WIN_20211028_19_15_53_Pro.jpg')
+image = cv2.imread(r'Raw Data\Unsepareted Data\3.jpg')
+#image = cv2.imread(r'Raw Data\Separeted Data\Black Mouse - Normal\WIN_20211028_19_18_19_Pro.jpg')
 # Create a window
 cv2.namedWindow('image',cv2.WINDOW_FREERATIO)
 
 # Create trackbars for color change
 # Hue is from 0-179 for Opencv
-cv2.createTrackbar('HMin', 'image', 0, 179, nothing)
+cv2.createTrackbar('HMin', 'image', 0, 255, nothing)
 cv2.createTrackbar('SMin', 'image', 0, 255, nothing)
 cv2.createTrackbar('VMin', 'image', 0, 255, nothing)
 cv2.createTrackbar('HMax', 'image', 0, 179, nothing)
@@ -21,7 +22,7 @@ cv2.createTrackbar('SMax', 'image', 0, 255, nothing)
 cv2.createTrackbar('VMax', 'image', 0, 255, nothing)
 
 # Set default value for Max HSV trackbars
-cv2.setTrackbarPos('HMax', 'image', 179)
+cv2.setTrackbarPos('HMax', 'image', 255)
 cv2.setTrackbarPos('SMax', 'image', 255)
 cv2.setTrackbarPos('VMax', 'image', 255)
 
@@ -43,8 +44,8 @@ while(1):
     upper = np.array([hMax, sMax, vMax])
 
     # Convert to HSV format and color threshold
-    hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
-    mask = cv2.inRange(hsv, lower, upper)
+    #hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
+    mask = cv2.inRange(image, lower, upper)
     result = cv2.bitwise_and(image, image, mask=mask)
 
     # Print if there is a change in HSV value

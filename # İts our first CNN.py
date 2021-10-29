@@ -1,2 +1,0 @@
-# İts our first CNN 
- 

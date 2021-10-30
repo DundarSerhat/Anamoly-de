@@ -23,6 +23,15 @@ def reSize(img, scale_percent):
     # resize image
     return cv2.resize(img, dim, interpolation = cv2.INTER_AREA)
 
+
+def reSizeImage(img):
+    width = 256
+    height = 256
+    dim = (width, height)
+    # resize image
+    resized = cv2.resize(img, dim, interpolation = cv2.INTER_AREA)
+    return resized
+
 def AddPadding(im, bordersize):
     row, col = im.shape[:2]
     bottom = im[row-2:row, 0:col]
@@ -89,7 +98,7 @@ def BlackMouseColorRange(imgBGR):
 
 
     masked = cv2.inRange(hsv, lower, upper)
-    result = cv2.bitwise_and(imgBGR, imgBGR, mask=masked)
+   
     return masked
 
 
@@ -111,5 +120,5 @@ def BlueMouseColorRange(imgBGR):
 
 
     masked = cv2.inRange(hsv, lower, upper)
-    result = cv2.bitwise_and(imgBGR, imgBGR, mask=masked)
+    
     return masked

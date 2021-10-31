@@ -25,8 +25,8 @@ def reSize(img, scale_percent):
 
 
 def reSizeImage(img):
-    width = 256
-    height = 256
+    width = 320
+    height = 320
     dim = (width, height)
     # resize image
     resized = cv2.resize(img, dim, interpolation = cv2.INTER_AREA)
